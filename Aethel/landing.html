@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aethel — Predicting the Future of Energy Transitions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<style>
+:root {
+  --accent-cyan:#00F5FF;
+  --accent-cyan-dim:#00F5FF33;
+  --accent-green:#00E676;
+  --accent-green-dim:#00E67633;
+  --accent-orange:#FF5C00;
+  --accent-orange-dim:#FF5C0033;
+  --accent-yellow:#FFD600;
+  --bg-deep:#0B0F14;
+  --border-subtle:#1E2530;
+  --font-code:#00F5FFCC;
+  --font-primary:#FFFFFF;
+  --font-secondary:#8B95A5;
+  --font-tertiary:#4A5568;
+  --surface-card:#161B2266;
+  --surface-elevated:#1A2030;
+  --surface-solid:#161B22;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg-deep);
+  color:var(--font-primary);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2rem;
+  padding:5rem 2rem;
+  overflow:hidden;
+  isolation:isolate;
+}
+/* Cyan glow */
+.hero::before{
+  content:"";
+  position:absolute;
+  top:50%;left:50%;
+  width:min(70vw,500px);
+  height:min(70vw,500px);
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,var(--accent-cyan-dim) 0%,transparent 70%);
+  filter:blur(120px);
+  opacity:.6;
+  z-index:-2;
+}
+/* Turbine wireframe */
+.turbine{
+  position:absolute;
+  top:50%;left:50%;
+  width:min(90vw,700px);
+  height:min(90vw,700px);
+  transform:translate(-50%,-50%);
+  opacity:.06;
+  color:var(--accent-cyan);
+  z-index:-1;
+  pointer-events:none;
+}
+.turbine svg{width:100%;height:100%;display:block}
+
+.title{
+  font-size:clamp(3.5rem,12vw,6rem);
+  font-weight:800;
+  letter-spacing:-.04em;
+  line-height:1;
+  text-align:center;
+}
+.subtitle{
+  max-width:50rem;
+  font-size:clamp(1.25rem,3vw,1.75rem);
+  font-weight:600;
+  color:var(--font-secondary);
+  text-align:center;
+  line-height:1.3;
+}
+.subtext{
+  max-width:44rem;
+  font-size:1rem;
+  color:var(--font-tertiary);
+  text-align:center;
+  line-height:1.5;
+}
+
+.badge-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:1rem;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.5rem 1rem;
+  border-radius:6px;
+  background:var(--surface-elevated);
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:.8125rem;
+  color:var(--font-secondary);
+}
+.badge i{display:inline-flex}
+.badge svg{width:16px;height:16px}
+.badge .ic-cyan{color:var(--accent-cyan)}
+.badge .ic-green{color:var(--accent-green)}
+.badge .ic-orange{color:var(--accent-orange)}
+
+.cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.875rem 2.5rem;
+  border:none;
+  border-radius:8px;
+  background:var(--accent-cyan);
+  color:var(--bg-deep);
+  font-family:inherit;
+  font-size:1rem;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.cta:hover{transform:translateY(-1px);box-shadow:0 12px 32px -8px var(--accent-cyan-dim)}
+
+@media (max-width:480px){
+  .hero{padding:3rem 1rem;gap:1.5rem}
+  .badge{padding:.4rem .75rem;font-size:.75rem}
+  .cta{padding:.75rem 2rem;font-size:.9375rem}
+}
+</style>
+</head>
+<body>
+
+<main class="hero">
+  <div class="turbine" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M100 10l0 180m-90-90l180 0m-160-70l140 140m0-140l-140 140m70-160c30 30 60 60 70 90-10 30-40 60-70 90-30-30-60-60-70-90 10-30 40-60 70-90m0 20c20 20 40 45 45 70-5 25-25 50-45 70-20-20-40-45-45-70 5-25 25-50 45-70m0 20c10 15 25 30 30 50-5 20-20 35-30 50-10-15-25-30-30-50 5-20 20-35 30-50m-50 50a50 50 0 1 1 100 0 50 50 0 1 1-100 0m15 0a35 35 0 1 1 70 0 35 35 0 1 1-70 0m15 0a20 20 0 1 1 40 0 20 20 0 1 1-40 0"/>
+    </svg>
+  </div>
+
+  <h1 class="title">Aethel</h1>
+  <p class="subtitle">Predicting the Future of Energy Transitions.</p>
+  <p class="subtext">A Digital Twin for Micro-Gas Turbines using Temporal Machine Learning.</p>
+
+  <div class="badge-row">
+    <span class="badge"><i data-lucide="atom" class="ic-cyan"></i>React</span>
+    <span class="badge"><i data-lucide="zap" class="ic-green"></i>FastAPI</span>
+    <span class="badge"><i data-lucide="flame" class="ic-orange"></i>PyTorch</span>
+    <span class="badge"><i data-lucide="container" class="ic-cyan"></i>Docker</span>
+  </div>
+
+  <a href="dashboard.html" class="cta">Quick Start</a>
+</main>
+
+<script>window.addEventListener('DOMContentLoaded',()=>window.lucide&&lucide.createIcons());</script>
+</body>
+</html>
