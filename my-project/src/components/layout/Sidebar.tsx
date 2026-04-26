@@ -1,4 +1,4 @@
-import { Hexagon, PanelLeftClose } from 'lucide-react'
+import { Hexagon, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import type { Dispatch, SetStateAction } from 'react'
 import { NavLink } from 'react-router-dom'
 import { NAV_ITEMS } from '@/config/nav'
@@ -68,6 +68,9 @@ function SidebarHeader({ isCollapsed, setIsCollapsed }: SidebarHeaderProps) {
         Logo doubles as the expand-toggle when collapsed. When the sidebar
         is open it's a non-interactive brand mark (the Close button handles
         the inverse direction), so we toggle `disabled` accordingly.
+        When collapsed, the icon swaps from Hexagon (logo) to PanelLeftOpen
+        on hover/focus via `group-hover` + opacity — both icons are stacked
+        absolutely so the swap stays a clean fade with no layout shift.
       */}
       <button
         type="button"
@@ -76,15 +79,31 @@ function SidebarHeader({ isCollapsed, setIsCollapsed }: SidebarHeaderProps) {
         aria-label={isCollapsed ? 'Expand sidebar' : 'Aethel'}
         title={isCollapsed ? 'Expand sidebar' : undefined}
         className={cn(
-          'flex shrink-0 items-center gap-2.5 rounded-md transition-colors duration-200',
-          // Only when collapsed does the logo behave like an interactive toggle.
+          'group flex shrink-0 items-center gap-2.5 rounded-md transition-colors duration-200',
           isCollapsed
             ? 'cursor-pointer p-1.5 hover:bg-surface-elevated focus-visible:bg-surface-elevated focus-visible:outline-none'
             : 'cursor-default p-0',
         )}
       >
-        <span className="inline-flex h-6 w-6 shrink-0 text-accent-cyan">
-          <Hexagon className="h-6 w-6" strokeWidth={1.75} />
+        <span className="relative inline-flex h-6 w-6 shrink-0">
+          <Hexagon
+            strokeWidth={1.75}
+            className={cn(
+              'absolute inset-0 h-6 w-6 text-accent-cyan transition-opacity duration-200',
+              // Only swap when collapsed — when open, logo stays put.
+              isCollapsed && 'group-hover:opacity-0 group-focus-visible:opacity-0',
+            )}
+          />
+          <PanelLeftOpen
+            aria-hidden="true"
+            strokeWidth={1.75}
+            className={cn(
+              'absolute inset-0 h-6 w-6 text-font-primary transition-opacity duration-200',
+              isCollapsed
+                ? 'opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100'
+                : 'hidden',
+            )}
+          />
         </span>
         <span
           className={cn(
