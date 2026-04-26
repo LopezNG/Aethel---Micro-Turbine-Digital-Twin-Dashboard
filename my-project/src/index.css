@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+@config '../tailwind.config.ts';
+
+@theme {
+  --color-accent-cyan: #00f5ff;
+  --color-accent-cyan-dim: #00f5ff33;
+  --color-accent-green: #00e676;
+  --color-accent-green-dim: #00e67633;
+  --color-accent-orange: #ff5c00;
+  --color-accent-orange-dim: #ff5c0033;
+  --color-accent-yellow: #ffd600;
+
+  --color-bg-deep: #0b0f14;
+  --color-border-subtle: #1e2530;
+
+  --color-font-code: #00f5ffcc;
+  --color-font-primary: #ffffff;
+  --color-font-secondary: #8b95a5;
+  --color-font-tertiary: #4a5568;
+
+  --color-surface-card: #161b2266;
+  --color-surface-elevated: #1a2030;
+  --color-surface-solid: #161b22;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--color-bg-deep);
+    color: var(--color-font-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
